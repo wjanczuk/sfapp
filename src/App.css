@@ -1,0 +1,25 @@
+.banksTable {
+  padding: 1%;
+}
+
+.tableButtons {
+  padding-left: 1%;
+  padding-bottom: 1%;
+  justify-content: start;
+}
+
+.saveDebt {
+  padding-bottom: 5px;
+}
+
+.balanceTotal {
+  padding-left: 1%
+}
+
+.balanceAmount {
+  justify-content: right;
+}
+
+.rowCounts {
+  padding-left: 1%
+}
