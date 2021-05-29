@@ -9,8 +9,8 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      allSelected: false,
       items: [],
+      allSelected: false,
       newItemInProgress: false,
       idInProgress: 11,
       creditorInProgress: '',
@@ -75,13 +75,12 @@ class App extends React.Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value;
     })
   }
 
   render() {
     const { error, isLoaded, items, newItemInProgress } = this.state;
-    console.log('items-->', items)
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -196,7 +195,7 @@ class App extends React.Component {
           </Table>
         </div>
         <div className="tableButtons">
-          <div className="saveDebt">{newItemInProgress && <button onClick={this.saveDebt}>Save New Debt</button>}</div>
+          {newItemInProgress && <div className="saveDebt"><button onClick={this.saveDebt}>Save New Debt</button></div>}
           <div className="addRemoveDebt"><button onClick={this.addDebt}>Add Debt</button> <button onClick={this.removeDebt}>Remove Debt(s)</button></div>
         </div>
         <div className="balanceTotal">
