@@ -23,6 +23,7 @@ class App extends React.Component {
     this.saveDebt = this.saveDebt.bind(this);
     this.removeDebt = this.removeDebt.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   componentDidMount() {
@@ -75,8 +76,22 @@ class App extends React.Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value;
+      [event.target.name]: event.target.value
     })
+  }
+
+  handleSelectAll() {
+    const items = [...this.state.items];
+    if (this.state.allSelected) items.map(item => item.checked = false);
+    else items.map(item => item.checked = true);
+    this.setState((state) => ({...state, items: items, allSelected: !this.state.allSelected}));
+  }
+
+  handleSelectOne(itemId) {
+    const items = [...this.state.items];
+    const currentItemIndex = items.findIndex((v) => v.id === itemId);
+    items[currentItemIndex].checked = !items[currentItemIndex].checked;
+    this.setState((state) => ({ ...state, items}));
   }
 
   render() {
@@ -98,15 +113,7 @@ class App extends React.Component {
                     name="selectAll"
                     type="checkbox"
                     checked={!!this.state.allSelected}
-                    onChange={() => {
-                      const items = [...this.state.items];
-                      if (this.state.allSelected) {
-                        items.map(item => item.checked = false)
-                      } else {
-                        items.map(item => item.checked = true)
-                      }
-                      this.setState((state) => ({...state, items: items, allSelected: !this.state.allSelected}));
-                    }}
+                    onChange={this.handleSelectAll}
                   />
                 </th>
                 <th>Creditor</th>
@@ -118,17 +125,12 @@ class App extends React.Component {
             </thead>
             <tbody>
               {items.map(item => (
-                <tr key={item.idInProgress}>
+                <tr key={item.id}>
                   <td><input
                   name={item.id}
                   type="checkbox"
                   checked={!!item.checked}
-                  onChange={() => {
-                    const items = [...this.state.items];
-                    const currentItemIndex = items.findIndex((v) => v.id === item.id);
-                    items[currentItemIndex].checked = !items[currentItemIndex].checked;
-                    this.setState((state) => ({ ...state, items}));
-                  }}
+                  onChange={() => this.handleSelectOne(item.id)}
                 /></td>
                   <td>{item.creditorName}</td>
                   <td>{item.firstName}</td>
