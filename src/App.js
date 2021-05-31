@@ -96,7 +96,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items, newItemInProgress } = this.state;
+    const { error, isLoaded, items, newItemInProgress, allSelected, creditorInProgress, firstNameInProgress, lastNameInProgress, minPayInProgress, balanceInProgress, idInProgress } = this.state;
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -113,14 +113,14 @@ class App extends React.Component {
                   <input
                     name="selectAll"
                     type="checkbox"
-                    checked={!!this.state.allSelected}
+                    checked={!!allSelected}
                     onChange={this.handleSelectAll}
                   />
                 </th>
                 <th>Creditor</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Min Pay%</th>
+                <th>Min Pay %</th>
                 <th>Balance</th>
               </tr>
             </thead>
@@ -141,7 +141,7 @@ class App extends React.Component {
                 </tr>
               ))}
               {newItemInProgress && 
-                <tr key={this.state.idInProgress}>
+                <tr key={idInProgress}>
                 <td></td>
                 <td>
                   <form>
@@ -149,7 +149,7 @@ class App extends React.Component {
                     type="text"
                     name="creditorInProgress"
                     onChange={this.handleChange}
-                    value={this.state.creditorInProgress}
+                    value={creditorInProgress}
                     />
                   </form>
                 </td>
@@ -159,7 +159,7 @@ class App extends React.Component {
                       type="text"
                       name="firstNameInProgress"
                       onChange={this.handleChange}
-                      value={this.state.firstNameInProgress}
+                      value={firstNameInProgress}
                       />
                     </form>
                 </td>
@@ -169,7 +169,7 @@ class App extends React.Component {
                       type="text"
                       name="lastNameInProgress"
                       onChange={this.handleChange}
-                      value={this.state.lastNameInProgress}
+                      value={lastNameInProgress}
                       />
                     </form>
                 </td>
@@ -179,7 +179,7 @@ class App extends React.Component {
                   type="number"
                   name="minPayInProgress"
                   onChange={this.handleChange}
-                  value={this.state.minPayInProgress}
+                  value={minPayInProgress}
                   />
                   </form>
                 </td>
@@ -189,7 +189,7 @@ class App extends React.Component {
                       type="number"
                       name="balanceInProgress"
                       onChange={this.handleChange}
-                      value={this.state.balanceInProgress}
+                      value={balanceInProgress}
                       />
                   </form>
                 </td>
