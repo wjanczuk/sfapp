@@ -96,7 +96,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items, newItemInProgress, allSelected, creditorInProgress, firstNameInProgress, lastNameInProgress, minPayInProgress, balanceInProgress, idInProgress } = this.state;
+    const { error, 
+            isLoaded, 
+            items, 
+            newItemInProgress, 
+            allSelected, 
+            creditorInProgress, 
+            firstNameInProgress, 
+            lastNameInProgress, 
+            minPayInProgress, 
+            balanceInProgress, 
+            idInProgress } = this.state;
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -106,7 +116,7 @@ class App extends React.Component {
       return (
       <div className="App">
         <div className="banksTable">
-          <Table striped bordered hover>
+          <Table bordered hover>
             <thead>
               <tr>
                 <th>
@@ -136,7 +146,7 @@ class App extends React.Component {
                   <td>{item.creditorName}</td>
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
-                  <td>{parseFloat(item.minPaymentPercentage).toFixed(2)}%</td>
+                  <td>{parseFloat(item.minPaymentPercentage).toFixed(2)}</td>
                   <td>{parseFloat(item.balance).toFixed(2)}</td>
                 </tr>
               ))}
@@ -193,19 +203,17 @@ class App extends React.Component {
                       />
                   </form>
                 </td>
-              </tr> }
+              </tr>}
+              <tr>
+                <td colSpan="5"><b>Balance:</b></td>
+                <td>${items.filter(item => item.checked === true).reduce((sum, cur) => sum + parseFloat(cur.balance), 0).toFixed(2)}</td>
+              </tr>
             </tbody>
           </Table>
         </div>
         <div className="tableButtons">
           {newItemInProgress && <div className="saveDebt"><button onClick={this.saveDebt}>Save New Debt</button></div>}
           <div className="addRemoveDebt"><button onClick={this.addDebt}>Add Debt</button> <button onClick={this.removeDebt}>Remove Debt(s)</button></div>
-        </div>
-        <div className="balanceTotal">
-          <Table hover>
-            <td>Balance:</td>
-            <td>${items.filter(item => item.checked === true).reduce((sum, cur) => sum + parseFloat(cur.balance), 0).toFixed(2)}</td>
-          </Table>
         </div>
         <div className="rowCounts">
         Total Row Count: {items.length} | Check Row Count: {items.filter(item => item.checked === true).length}

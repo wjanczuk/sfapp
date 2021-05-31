@@ -1,5 +1,5 @@
-td {
-  text-align: left;
+.balanceTotal td {
+  text-align: right;
 }
 
 .banksTable {
@@ -14,10 +14,6 @@ td {
 
 .saveDebt {
   padding-bottom: 5px;
-}
-
-.balanceTotal {
-  padding-left: 1%
 }
 
 .balanceAmount {
