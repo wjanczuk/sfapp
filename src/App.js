@@ -24,6 +24,7 @@ class App extends React.Component {
     this.removeDebt = this.removeDebt.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectAll = this.handleSelectAll.bind(this);
+    this.handleSelectOne = this.handleSelectOne.bind(this);
   }
 
   componentDidMount() {
